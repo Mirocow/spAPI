@@ -33,9 +33,8 @@ class SiteController extends Controller
 	}
     public function actionEntities()
     {
-        ini_set('display_errors', 1);
         header("Access-Control-Allow-Origin: *");
-        $response = [];
+        $response = array();
         $entities = Entity::model()->findAll();
         foreach($entities as $entity)
             $response[] = array('id' => $entity->guid, 'name' => $entity->name);
