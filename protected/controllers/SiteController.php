@@ -34,8 +34,12 @@ class SiteController extends Controller
     public function actionEntities()
     {
         header("Access-Control-Allow-Origin: *");
-        $entities = CHtml::listData(Entity::model()->findAll(),'guid','name');
-        echo json_encode(Core::utfEn($entities));
+        $response = [];
+        $entities = Entity::model()->findAll();
+        foreach($entities as $entity)
+            $response[] = array('id' => $entity->guid, 'name' => $entity->name);
+        array_walk_recursive($response, 'Core::utfEn');
+        echo json_encode($response);
     }
 	/**
 	 * This is the action to handle external exceptions.
