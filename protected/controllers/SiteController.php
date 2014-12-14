@@ -31,7 +31,12 @@ class SiteController extends Controller
 		// using the default layout 'protected/views/layouts/main.php'
 		$this->render('index');
 	}
+    public function actionEntities()
+    {
+        $entities = CHtml::listData(Entity::model()->findAll(),'id','name');
 
+        json_encode($entities);
+    }
 	/**
 	 * This is the action to handle external exceptions.
 	 */
