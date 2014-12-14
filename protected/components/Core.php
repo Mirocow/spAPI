@@ -8,7 +8,7 @@
 class Core {
     public static function utfEn(&$item, $key)
     {
-        mb_convert_encoding($item, "utf-8", "windows-1251");
+        $item = mb_convert_encoding($item, "utf-8", "windows-1251");
     }
     public static function utfDe(&$item, $key)
     {
