@@ -33,9 +33,9 @@ class SiteController extends Controller
 	}
     public function actionEntities()
     {
-        $entities = CHtml::listData(Entity::model()->findAll(),'id','name');
-        CVarDumper::dump($entities,100,true);
-        //print json_encode($entities);
+        $entities = CHtml::listData(Entity::model()->findAll(),'guid','name');
+        //CVarDumper::dump($entities,100,true);
+        print json_encode($entities);
     }
 	/**
 	 * This is the action to handle external exceptions.
