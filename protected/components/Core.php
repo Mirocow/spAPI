@@ -8,10 +8,10 @@
 class Core {
     public static function utfEn(&$item, $key)
     {
-        $item = utf8_encode($item);
+        $item = iconv('windows-1251', 'UTF-8', $item);
     }
     public static function utfDe(&$item, $key)
     {
-        $item = utf8_decode($item);
+        $item = iconv('UTF-8', 'windows-1251', $item);
     }
 }
