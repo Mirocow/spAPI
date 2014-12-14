@@ -37,7 +37,7 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
-		/*
+
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
@@ -46,7 +46,7 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		*/
+		/*
         'urlManager' => array(
             'class' => 'UrlManager',
             'urlFormat' => 'path',
@@ -57,7 +57,7 @@ return array(
                 'site/signup',  // site/signup action
                 'settings',     // all actions of SettingsController
             ),
-        ),
+        ),*/
 		// uncomment the following to use a MySQL database
 
 		'db'=>array(
