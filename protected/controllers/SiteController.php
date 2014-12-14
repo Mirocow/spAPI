@@ -33,6 +33,7 @@ class SiteController extends Controller
 	}
     public function actionEntities()
     {
+        header('Access-Control-Allow-Origin: *;');
         $entities = CHtml::listData(Entity::model()->findAll(),'guid','name');
         print json_encode(Core::utfEn($entities));
     }
