@@ -36,9 +36,9 @@ class SiteController extends Controller
         header("Access-Control-Allow-Origin: *");
         $response = array();
         $entities = Entity::model()->findAll();
-        echo $entities[0]->name;die();
         foreach($entities as $entity)
             $response[] = array('id' => $entity->guid, 'name' => $entity->name);
+
         array_walk_recursive($response, 'Core::utfEn');
         echo json_encode($response);
     }
