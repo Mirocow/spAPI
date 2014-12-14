@@ -47,6 +47,17 @@ return array(
 			),
 		),
 		*/
+        'urlManager' => array(
+            'class' => 'UrlManager',
+            'urlFormat' => 'path',
+            'hostInfo' => 'http://spapi.zhilin.skib6.ru',
+            'secureHostInfo' => 'https://spapi.zhilin.skib6.ru',
+            'secureRoutes' => array(
+                'site/entities',   // site/login action
+                'site/signup',  // site/signup action
+                'settings',     // all actions of SettingsController
+            ),
+        ),
 		// uncomment the following to use a MySQL database
 
 		'db'=>array(
