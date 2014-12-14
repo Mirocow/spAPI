@@ -54,7 +54,7 @@ return array(
 			//'emulatePrepare' => true,
 			'username' => 'sa',
 			'password' => 'JokE5001031',
-			'charset' => 'utf8',
+			//'charset' => 'utf8',
 		),
 
 		'errorHandler'=>array(
