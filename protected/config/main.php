@@ -50,8 +50,8 @@ return array(
 		// uncomment the following to use a MySQL database
 
 		'db'=>array(
-			'connectionString' => 'mssql:host=91.203.194.185;dbname=monitoring',
-			'emulatePrepare' => true,
+			'connectionString' => 'sqlsrv:Server=91.203.194.185\SQLEXPRESS;Database=monitoring',
+			//'emulatePrepare' => true,
 			'username' => 'sa',
 			'password' => 'JokE5001031',
 			'charset' => 'utf8',
