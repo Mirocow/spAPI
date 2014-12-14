@@ -35,8 +35,7 @@ class SiteController extends Controller
     {
         header("Access-Control-Allow-Origin: *");
         $entities = CHtml::listData(Entity::model()->findAll(),'guid','name');
-        print json_encode(Core::utfEn($entities));
-        die();
+        echo json_encode(Core::utfEn($entities));
     }
 	/**
 	 * This is the action to handle external exceptions.
