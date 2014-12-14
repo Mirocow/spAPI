@@ -39,7 +39,7 @@ class SiteController extends Controller
         $entities = Entity::model()->findAll();
         foreach($entities as $entity)
             $response[] = array('id' => $entity->guid, 'name' => $entity->name);
-        //array_walk_recursive($response, 'Core::utfEn');
+        array_walk_recursive($response, 'Core::utfEn');
         echo json_encode($response);
     }
 	/**

@@ -6,11 +6,11 @@
  * Time: 0:46
  */
 class Core {
-    public static function utfEn($key, $item)
+    public static function utfEn(&$item, $key)
     {
         $item = utf8_encode($item);
     }
-    public static function utfDe($array)
+    public static function utfDe(&$item, $key)
     {
         $item = utf8_decode($item);
     }
