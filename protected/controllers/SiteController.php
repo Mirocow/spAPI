@@ -58,6 +58,22 @@ class SiteController extends Controller
         array_walk_recursive($response, 'Core::utfEn');
         echo json_encode($response);
     }
+    public function actionClaims($guid = null)
+    {
+        header("Access-Control-Allow-Origin: *");
+        $response = array();
+
+        if($guid === null)
+            $claims = Claim::model()->findAll();
+        else
+            $claims = Claim::model()->findAllByAttributes(array('guid' => $guid));
+
+        foreach($claims as $claim)
+            $response[] = array('id' => $claim->id, 'name' => $claim->name, 'error' => $claim->error, 'guid' => $claim->guid, 'status' => $claim->status, 'created' => $claim->created, 'closed' => $claim->closed, 'comment' => $claim->comment);
+
+        array_walk_recursive($response, 'Core::utfEn');
+        echo json_encode($response);
+    }
 	/**
 	 * This is the action to handle external exceptions.
 	 */
