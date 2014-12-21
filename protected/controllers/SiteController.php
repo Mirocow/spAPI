@@ -25,11 +25,13 @@ class SiteController extends Controller
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
-	public function actionIndex()
+	public function actionIndex($guid = null)
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+        $response = array(
+            'claims' => $this->actionClaims($guid, false),
+            'hardware' => $this->actionHardware($guid, false),
+        );
+        print json_encode($response);
 	}
     public function actionEntities()
     {
@@ -42,7 +44,7 @@ class SiteController extends Controller
         array_walk_recursive($response, 'Core::utfEn');
         echo json_encode($response);
     }
-    public function actionHardware($guid = null)
+    public function actionHardware($guid = null, $render = true)
     {
         header("Access-Control-Allow-Origin: *");
         $response = array();
@@ -56,9 +58,13 @@ class SiteController extends Controller
             $response[] = array('id' => $hardware->id, 'name' => $hardware->name, 'guid' => $hardware->guid);
 
         array_walk_recursive($response, 'Core::utfEn');
-        echo json_encode($response);
+
+        if($render)
+            echo json_encode($response);
+        else
+            return $response;
     }
-    public function actionClaims($guid = null)
+    public function actionClaims($guid = null, $render = true)
     {
         header("Access-Control-Allow-Origin: *");
         $response = array();
@@ -72,7 +78,11 @@ class SiteController extends Controller
             $response[] = array('id' => $claim->id, 'name' => $claim->name, 'error' => $claim->error, 'guid' => $claim->guid, 'status' => $claim->status, 'created' => $claim->created, 'closed' => $claim->closed, 'comment' => $claim->comment);
 
         array_walk_recursive($response, 'Core::utfEn');
-        echo json_encode($response);
+
+        if($render)
+            echo json_encode($response);
+        else
+            return $response;
     }
 	/**
 	 * This is the action to handle external exceptions.
