@@ -42,11 +42,16 @@ class SiteController extends Controller
         array_walk_recursive($response, 'Core::utfEn');
         echo json_encode($response);
     }
-    public function actionHardware()
+    public function actionHardware($guid = null)
     {
         header("Access-Control-Allow-Origin: *");
         $response = array();
-        $hardwares = Hardware::model()->findAll();
+
+        if($guid === null)
+            $hardwares = Hardware::model()->findAll();
+        else
+            $hardwares = Hardware::model()->findAllByAttributes(array('guid' => $guid));
+
         foreach($hardwares as $hardware)
             $response[] = array('id' => $hardware->id, 'name' => $hardware->name, 'guid' => $hardware->guid);
 
