@@ -89,12 +89,13 @@ class SiteController extends Controller
     {
         header("Access-Control-Allow-Origin: *");
         $claim = json_decode(@file_get_contents('php://input'));
-        echo '1';
-        /*if($guid)
+
+        if($guid)
         {
             if($claim !== array())
             {
                 $claim = new Claim();
+                die();
                 $claim->attributes = $claim['Claim'];
                 $claim->created = new CDbExpression('GETDATE()');
                 $claim->status = 1;
@@ -103,7 +104,7 @@ class SiteController extends Controller
                     CVarDumper::dump($claim->getErrors(), 1000, false);
                 }
             }
-        }*/
+        }
     }
 	/**
 	 * This is the action to handle external exceptions.
