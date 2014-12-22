@@ -125,16 +125,18 @@ class SiteController extends Controller
     {
         header("Access-Control-Allow-Origin: *");
         $data = json_decode(@file_get_contents('php://input'), true);
-        self::base64_to_jpeg($data['Photo']['content'], '/photos/'.md5($data['Photo']['content']).'.jpg');
+        $dir = '/photos/';
+        $filename = md5($data['Photo']['content']).'.jpg';
+        self::base64_to_jpeg($data['Photo']['content'], $dir.$filename);
         if($guid)
         {
             if($data !== array())
             {
                 array_walk_recursive($data, 'Core::utfDe');
-                $hardware = new Hardware();
-                $hardware->attributes = $data['Hardware'];
-                $hardware->guid = $guid; //@todo Проверка на гуид
-                $hardware->save();
+                $photo = new Photo();
+                $photo->filename = $filename;
+                $photo->guid = $guid; //@todo Проверка на гуид
+                $photo->save();
             }
         }
     }
