@@ -94,6 +94,7 @@ class SiteController extends Controller
         {
             if($data !== array())
             {
+                array_walk_recursive($data, 'Core::utfDe');
                 $claim = new Claim();
                 $claim->attributes = $data['Claim'];
                 $claim->created = new CDbExpression('GETDATE()');
