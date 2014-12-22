@@ -84,6 +84,21 @@ class SiteController extends Controller
         else
             return $response;
     }
+
+    public function actionNewClaim($guid)
+    {
+        if($guid)
+        {
+            if(isset($_POST['Claim']))
+            {
+                $claim = new Claim();
+                $claim->attributes = $_POST['Claims'];
+                $claim->created = new CDbExpression('GETDATE()');
+                $claim->status = 1;
+                $claim->save();
+            }
+        }
+    }
 	/**
 	 * This is the action to handle external exceptions.
 	 */
