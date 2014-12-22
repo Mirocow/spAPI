@@ -71,9 +71,9 @@ class SiteController extends Controller
         $response = array();
 
         if($guid === null)
-            $photos = Claim::model()->findAll();
+            $photos = Photo::model()->findAll();
         else
-            $photos = Claim::model()->findAllByAttributes(array('guid' => $guid));
+            $photos = Photo::model()->findAllByAttributes(array('guid' => $guid));
 
         foreach($photos as $photo)
             $response[] = array('id' => $photo->id, 'name' => $photo->name, 'filename' => $photo->filename);
@@ -91,9 +91,9 @@ class SiteController extends Controller
         $response = array();
 
         if($guid === null)
-            $claims = Photo::model()->findAll();
+            $claims = Claim::model()->findAll();
         else
-            $claims = Photo::model()->findAllByAttributes(array('guid' => $guid));
+            $claims = Claim::model()->findAllByAttributes(array('guid' => $guid));
 
         foreach($claims as $claim)
             $response[] = array('id' => $claim->id, 'name' => $claim->name, 'error' => $claim->error, 'guid' => $claim->guid, 'status' => $claim->status, 'created' => $claim->created, 'closed' => $claim->closed, 'comment' => $claim->comment);
