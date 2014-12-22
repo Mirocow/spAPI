@@ -88,15 +88,15 @@ class SiteController extends Controller
     public function actionNewClaim($guid)
     {
         header("Access-Control-Allow-Origin: *");
-        $claim = json_decode(@file_get_contents('php://input'), true);
+        $data = json_decode(@file_get_contents('php://input'), true);
 
         if($guid)
         {
-            if($claim !== array())
+            if($data !== array())
             {
                 $claim = new Claim();
-                die(print_r($claim['Claim']));
-                $claim->attributes = $claim['Claim'];
+                die(print_r($data['Claim']));
+                $claim->attributes = $data['Claim'];
                 $claim->created = new CDbExpression('GETDATE()');
                 $claim->status = 1;
                 if(!$claim->save())
