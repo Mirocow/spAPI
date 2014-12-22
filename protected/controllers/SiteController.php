@@ -121,6 +121,23 @@ class SiteController extends Controller
             }
         }
     }
+    public function actionNewPhoto($guid)
+    {
+        header("Access-Control-Allow-Origin: *");
+        $data = json_decode(@file_get_contents('php://input'), true);
+        die(var_dump($data));
+        if($guid)
+        {
+            if($data !== array())
+            {
+                array_walk_recursive($data, 'Core::utfDe');
+                $hardware = new Hardware();
+                $hardware->attributes = $data['Hardware'];
+                $hardware->guid = $guid; //@todo Проверка на гуид
+                $hardware->save();
+            }
+        }
+    }
     public function actionEditClaim($id)
     {
         header("Access-Control-Allow-Origin: *");
