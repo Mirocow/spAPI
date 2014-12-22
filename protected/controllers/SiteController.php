@@ -87,6 +87,7 @@ class SiteController extends Controller
 
     public function actionNewClaim($guid)
     {
+        header("Access-Control-Allow-Origin: *");
         if($guid)
         {
             if(isset($_POST['Claim']))
