@@ -107,9 +107,9 @@ class SiteController extends Controller
     public function actionEditClaim($id)
     {
         header("Access-Control-Allow-Origin: *");
-        die();
         $data = json_decode(@file_get_contents('php://input'), true);
         $claim = Claim::model()->findByPk($id);
+        die();
         if($id)
         {
             if($data !== array())
