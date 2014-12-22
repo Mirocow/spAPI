@@ -89,10 +89,10 @@ class SiteController extends Controller
     {
         if($guid)
         {
-            if(isset($_POST['Claim']))
+            if(isset($_GET['Claim']))
             {
                 $claim = new Claim();
-                $claim->attributes = $_POST['Claims'];
+                $claim->attributes = $_GET['Claim'];
                 $claim->created = new CDbExpression('GETDATE()');
                 $claim->status = 1;
                 $claim->save();
