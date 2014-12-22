@@ -109,9 +109,9 @@ class SiteController extends Controller
         header("Access-Control-Allow-Origin: *");
         $data = json_decode(@file_get_contents('php://input'), true);
         $claim = Claim::model()->findByPk($id);
+        die($id);
         if($id)
         {
-            die();
             if($data !== array())
             {
                 array_walk_recursive($data, 'Core::utfDe');
