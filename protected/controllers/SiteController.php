@@ -128,6 +128,7 @@ class SiteController extends Controller
         $dir = '/photos/';
         $filename = md5($data['Photo']['content']).'.jpg';
         self::base64_to_jpeg($data['Photo']['content'], $dir.$filename);
+        die('');
         if($guid)
         {
             if($data !== array())
