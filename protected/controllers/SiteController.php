@@ -137,6 +137,7 @@ class SiteController extends Controller
                 $photo->filename = $filename;
                 $photo->guid = $guid; //@todo Проверка на гуид
                 $photo->save();
+                var_dump($photo->getErrors());
             }
         }
     }
