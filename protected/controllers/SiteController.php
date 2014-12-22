@@ -124,23 +124,6 @@ class SiteController extends Controller
     public function actionNewPhoto($guid)
     {
         header("Access-Control-Allow-Origin: *");
-        die('');
-        $data = json_decode(@file_get_contents('php://input'), true);
-        $dir = '/photos/';
-        $filename = md5($data['Photo']['content']).'.jpg';
-        self::base64_to_jpeg($data['Photo']['content'], $dir.$filename);
-        if($guid)
-        {
-            if($data !== array())
-            {
-                array_walk_recursive($data, 'Core::utfDe');
-                $photo = new Photo();
-                $photo->filename = $filename;
-                $photo->guid = $guid; //@todo Проверка на гуид
-                $photo->save();
-                var_dump($photo->getErrors());
-            }
-        }
     }
     public function actionEditClaim($id)
     {
