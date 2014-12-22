@@ -124,11 +124,16 @@ class SiteController extends Controller
     public function actionNewPhoto($guid)
     {
         header("Access-Control-Allow-Origin: *");
+
         $data = json_decode(@file_get_contents('php://input'), true);
-        $dir = '/photos/';
+        $dir = 'photos/';
+
         $filename = md5($data['Photo']['content']).'.jpg';
+
         file_put_contents($dir.$filename, '');
+
         $this->base64_to_jpeg($data['Photo']['content'], $dir.$filename);
+
         if($guid)
         {
             if($data !== array())
