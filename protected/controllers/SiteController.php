@@ -100,7 +100,7 @@ class SiteController extends Controller
                 $claim->status = 1;
                 if(!$claim->save())
                 {
-                    CVarDumper::dump($claim->getErrors(), 1000, true);
+                    CVarDumper::dump($claim->getErrors(), 1000, false);
                 }
             }
         }
