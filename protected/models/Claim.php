@@ -31,7 +31,7 @@ class Claim extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, error, guid, status, created, closed', 'required'),
+			array('name, error, guid, status, created', 'required'),
 			array('guid, status', 'numerical', 'integerOnly'=>true),
 			array('name, error, comment', 'length', 'max'=>255),
 			// The following rule is used by search().
