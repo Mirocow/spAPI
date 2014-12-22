@@ -99,6 +99,8 @@ class SiteController extends Controller
                 if(!$claim->save())
                     echo 'error';
             }
+            else
+                echo 'no';
         }
     }
 	/**
