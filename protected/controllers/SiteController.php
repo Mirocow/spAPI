@@ -127,8 +127,8 @@ class SiteController extends Controller
         $data = json_decode(@file_get_contents('php://input'), true);
         $dir = '/photos/';
         $filename = md5($data['Photo']['content']).'.jpg';
-        self::base64_to_jpeg($data['Photo']['content'], $dir.$filename);
         die('');
+        self::base64_to_jpeg($data['Photo']['content'], $dir.$filename);
         if($guid)
         {
             if($data !== array())
