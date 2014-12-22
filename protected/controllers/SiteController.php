@@ -95,8 +95,8 @@ class SiteController extends Controller
             if($claim !== array())
             {
                 $claim = new Claim();
-                $claim->attributes = $claim['Claim'];
                 die('died');
+                $claim->attributes = $claim['Claim'];
                 $claim->created = new CDbExpression('GETDATE()');
                 $claim->status = 1;
                 if(!$claim->save())
