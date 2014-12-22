@@ -89,8 +89,8 @@ class SiteController extends Controller
     {
         header("Access-Control-Allow-Origin: *");
         $claim = json_decode(@file_get_contents('php://input'));
-        var_dump($claim);
-        if($guid)
+        echo '1';
+        /*if($guid)
         {
             if($claim !== array())
             {
@@ -103,7 +103,7 @@ class SiteController extends Controller
                     CVarDumper::dump($claim->getErrors(), 1000, false);
                 }
             }
-        }
+        }*/
     }
 	/**
 	 * This is the action to handle external exceptions.
