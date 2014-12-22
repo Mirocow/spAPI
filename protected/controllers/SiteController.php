@@ -100,10 +100,22 @@ class SiteController extends Controller
                 $claim->created = new CDbExpression('GETDATE()');
                 $claim->guid = $guid; //@todo Проверка на гуид
                 $claim->status = 1;
-                if(!$claim->save())
-                {
-                    CVarDumper::dump($claim->getErrors(), 1000, false);
-                }
+                $claim->save();
+            }
+        }
+    }
+    public function actionEditClaim($id)
+    {
+        header("Access-Control-Allow-Origin: *");
+        $data = json_decode(@file_get_contents('php://input'), true);
+        $claim = Claim::model()->findByPk($id);
+        if($id)
+        {
+            if($data !== array())
+            {
+                array_walk_recursive($data, 'Core::utfDe');
+                $claim->attributes = $data['Claim'];
+                $claim->save();
             }
         }
     }
