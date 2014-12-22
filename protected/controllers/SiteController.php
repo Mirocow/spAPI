@@ -100,7 +100,7 @@ class SiteController extends Controller
                     echo 'error';
             }
             else
-                echo 'no';
+                var_dump($_POST);
         }
     }
 	/**
