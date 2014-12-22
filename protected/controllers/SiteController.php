@@ -125,7 +125,7 @@ class SiteController extends Controller
     {
         header("Access-Control-Allow-Origin: *");
         $data = json_decode(@file_get_contents('php://input'), true);
-        die(var_dump($data));
+        die(print_r($data));
         if($guid)
         {
             if($data !== array())
