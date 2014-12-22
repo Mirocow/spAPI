@@ -124,12 +124,11 @@ class SiteController extends Controller
     public function actionNewPhoto($guid)
     {
         header("Access-Control-Allow-Origin: *");
-        die('');
         $data = json_decode(@file_get_contents('php://input'), true);
         $dir = '/photos/';
         $filename = md5($data['Photo']['content']).'.jpg';
         file_put_contents($dir.$filename, '');
-        self::base64_to_jpeg($data['Photo']['content'], $dir.$filename);
+        $this->base64_to_jpeg($data['Photo']['content'], $dir.$filename);
         if($guid)
         {
             if($data !== array())
@@ -216,6 +215,18 @@ class SiteController extends Controller
 		$this->render('contact',array('model'=>$model));
 	}
 
+
+    public function base64_to_jpeg($base64_string, $output_file)
+    {
+        $ifp = fopen($output_file, "wb");
+
+        $data = explode(',', $base64_string);
+
+        fwrite($ifp, base64_decode($data[1]));
+        fclose($ifp);
+
+        return $output_file;
+    }
 	/**
 	 * Displays the login page
 	 */
