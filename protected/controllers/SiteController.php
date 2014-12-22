@@ -89,7 +89,7 @@ class SiteController extends Controller
     {
         header("Access-Control-Allow-Origin: *");
         $claim = json_decode(@file_get_contents('php://input'));
-
+        var_dump($claim);
         if($guid)
         {
             if($claim !== array())
