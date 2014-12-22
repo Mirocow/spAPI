@@ -30,6 +30,7 @@ class SiteController extends Controller
         $response = array(
             'claims' => $this->actionClaims($guid, false),
             'hardware' => $this->actionHardware($guid, false),
+            'photos' => $this->actionPhotos($guid, false),
         );
         print json_encode($response);
 	}
@@ -70,9 +71,29 @@ class SiteController extends Controller
         $response = array();
 
         if($guid === null)
-            $claims = Claim::model()->findAll();
+            $photos = Claim::model()->findAll();
         else
-            $claims = Claim::model()->findAllByAttributes(array('guid' => $guid));
+            $photos = Claim::model()->findAllByAttributes(array('guid' => $guid));
+
+        foreach($photos as $photo)
+            $response[] = array('id' => $photo->id, 'name' => $photo->name, 'filename' => $photo->filename);
+
+        array_walk_recursive($response, 'Core::utfEn');
+
+        if($render)
+            echo json_encode($response);
+        else
+            return $response;
+    }
+    public function actionPhotos($guid = null, $render = true)
+    {
+        header("Access-Control-Allow-Origin: *");
+        $response = array();
+
+        if($guid === null)
+            $claims = Photo::model()->findAll();
+        else
+            $claims = Photo::model()->findAllByAttributes(array('guid' => $guid));
 
         foreach($claims as $claim)
             $response[] = array('id' => $claim->id, 'name' => $claim->name, 'error' => $claim->error, 'guid' => $claim->guid, 'status' => $claim->status, 'created' => $claim->created, 'closed' => $claim->closed, 'comment' => $claim->comment);
@@ -84,7 +105,6 @@ class SiteController extends Controller
         else
             return $response;
     }
-
     public function actionNewClaim($guid)
     {
         header("Access-Control-Allow-Origin: *");
