@@ -126,8 +126,8 @@ class SiteController extends Controller
         header("Access-Control-Allow-Origin: *");
         $data = json_decode(@file_get_contents('php://input'), true);
         $dir = '/photos/';
-        $filename = md5($data['Photo']['content']).'.jpg';
         die('');
+        $filename = md5($data['Photo']['content']).'.jpg';
         self::base64_to_jpeg($data['Photo']['content'], $dir.$filename);
         if($guid)
         {
