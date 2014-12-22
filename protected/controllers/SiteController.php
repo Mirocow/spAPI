@@ -88,7 +88,7 @@ class SiteController extends Controller
     public function actionNewClaim($guid)
     {
         header("Access-Control-Allow-Origin: *");
-        echo @file_get_contents('php://input');s
+        echo @file_get_contents('php://input');
         die();
         if($guid)
         {
