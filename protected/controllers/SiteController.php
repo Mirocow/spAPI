@@ -65,7 +65,7 @@ class SiteController extends Controller
         else
             return $response;
     }
-    public function actionClaims($guid = null, $render = true)
+    public function actionPhotos($guid = null, $render = true)
     {
         header("Access-Control-Allow-Origin: *");
         $response = array();
@@ -85,7 +85,7 @@ class SiteController extends Controller
         else
             return $response;
     }
-    public function actionPhotos($guid = null, $render = true)
+    public function actionClaims($guid = null, $render = true)
     {
         header("Access-Control-Allow-Origin: *");
         $response = array();
