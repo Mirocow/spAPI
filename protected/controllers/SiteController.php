@@ -95,11 +95,13 @@ class SiteController extends Controller
             if($claim !== array())
             {
                 $claim = new Claim();
-                $claim->attributes = $claim;
+                $claim->attributes = $claim['Claim'];
                 $claim->created = new CDbExpression('GETDATE()');
                 $claim->status = 1;
                 if(!$claim->save())
-                    echo 'error';
+                {
+                    CVarDumper::dump($claim, 1000, true);
+                }
             }
         }
     }
