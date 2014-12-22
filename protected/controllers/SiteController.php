@@ -96,9 +96,9 @@ class SiteController extends Controller
             {
                 $claim = new Claim();
                 $claim->attributes = $claim['Claim'];
+                die('died');
                 $claim->created = new CDbExpression('GETDATE()');
                 $claim->status = 1;
-                die('died');
                 if(!$claim->save())
                 {
                     CVarDumper::dump($claim->getErrors(), 1000, false);
