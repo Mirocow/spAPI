@@ -96,7 +96,8 @@ class SiteController extends Controller
                 $claim->attributes = $_POST['Claim'];
                 $claim->created = new CDbExpression('GETDATE()');
                 $claim->status = 1;
-                $claim->save();
+                if(!$claim->save())
+                    echo 'error';
             }
         }
     }
