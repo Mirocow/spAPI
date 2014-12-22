@@ -27,8 +27,8 @@ class Photo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, guid', 'required'),
-			array('id, guid', 'numerical', 'integerOnly'=>true),
+			array('guid', 'required'),
+			array('guid', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>128),
 			array('filename', 'length', 'max'=>255),
 			// The following rule is used by search().
