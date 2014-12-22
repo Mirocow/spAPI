@@ -38,15 +38,15 @@ return array(
 		),
 		// uncomment the following to enable URLs in path-format
 
-		'urlManager'=>array(
-			'urlFormat'=>'path',
-			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-			),
-		),
-		/*
+        /*
+        'urlManager'=>array(
+            'urlFormat'=>'path',
+            'rules'=>array(
+                '<controller:\w+>/<id:\d+>'=>'<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+            ),
+        ),*/
         'urlManager' => array(
             'class' => 'UrlManager',
             'urlFormat' => 'path',
@@ -57,7 +57,7 @@ return array(
                 'site/signup',  // site/signup action
                 'settings',     // all actions of SettingsController
             ),
-        ),*/
+        ),
 		// uncomment the following to use a MySQL database
 
 		'db'=>array(
