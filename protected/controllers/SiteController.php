@@ -116,6 +116,7 @@ class SiteController extends Controller
                 array_walk_recursive($data, 'Core::utfDe');
                 $claim->attributes = $data['Claim'];
                 $claim->save();
+                CVarDumper::dump($claim->getErrors(), 100, false);
             }
         }
     }
