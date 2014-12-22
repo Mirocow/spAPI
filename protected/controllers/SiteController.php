@@ -138,6 +138,22 @@ class SiteController extends Controller
             }
         }
     }
+    public function actionEditHardware($id)
+    {
+        header("Access-Control-Allow-Origin: *");
+        $data = json_decode(@file_get_contents('php://input'), true);
+        $hardware = Hardware::model()->findByPk($id);
+
+        if($id)
+        {
+            if($data !== array())
+            {
+                array_walk_recursive($data, 'Core::utfDe');
+                $hardware->attributes = $data['Hardware'];
+                $hardware->save();
+            }
+        }
+    }
 	/**
 	 * This is the action to handle external exceptions.
 	 */
