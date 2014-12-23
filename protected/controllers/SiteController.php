@@ -94,6 +94,7 @@ class SiteController extends Controller
         {
             $criteria->compare('name', $search, true, 'OR');
             $criteria->compare('id', $search, false, 'OR');
+            $criteria->order = 'id DESC';
         }
 
         if($guid === null)
