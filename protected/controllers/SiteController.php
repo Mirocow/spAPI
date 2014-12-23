@@ -101,7 +101,7 @@ class SiteController extends Controller
             $claims = Claim::model()->findAll($criteria);
         else
         {
-            $criteria->addCondition('guid = '.$guid, 'AND');
+            //$criteria->addCondition('guid = '.$guid, 'AND');
             $claims = Claim::model()->findAll($criteria);
         }
 
