@@ -28,7 +28,7 @@ class SiteController extends Controller
 	public function actionIndex($guid = null)
 	{
         $response = array(
-            'claims' => $this->actionClaims($guid, false),
+            'claims' => $this->actionClaims($guid, null, false),
             'hardware' => $this->actionHardware($guid, false),
             'photos' => $this->actionPhotos($guid, false),
         );
