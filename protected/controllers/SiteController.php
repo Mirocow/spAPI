@@ -85,15 +85,24 @@ class SiteController extends Controller
         else
             return $response;
     }
-    public function actionClaims($guid = null, $render = true)
+    public function actionClaims($guid = null, $search = null, $render = true)
     {
         header("Access-Control-Allow-Origin: *");
         $response = array();
+        $criteria = new CDbCriteria();
+        if($search)
+        {
+            $criteria->compare('name', $search, true, 'OR');
+            $criteria->compare('id', $search, false, 'OR');
+        }
 
         if($guid === null)
-            $claims = Claim::model()->findAll();
+            $claims = Claim::model()->findAll($criteria);
         else
-            $claims = Claim::model()->findAllByAttributes(array('guid' => $guid));
+        {
+            $criteria->addCondition('guid = '.$guid, 'AND');
+            $claims = Claim::model()->findAll($criteria);
+        }
 
         foreach($claims as $claim)
             $response[] = array('id' => $claim->id, 'name' => $claim->name, 'error' => $claim->error, 'guid' => $claim->guid, 'status' => $claim->status, 'created' => $claim->created, 'closed' => $claim->closed, 'comment' => $claim->comment);
