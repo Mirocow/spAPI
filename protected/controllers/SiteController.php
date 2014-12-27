@@ -99,7 +99,7 @@ class SiteController extends Controller
             if(isset($data['search']))
                 $criteria->condition .= " AND name LIKE '%".$data['search']."%'";
             else
-                echo 'lol';
+                echo $data['search'];
         }
 
         $claims = Claim::model()->findAll($criteria);
