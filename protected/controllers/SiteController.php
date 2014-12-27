@@ -93,21 +93,14 @@ class SiteController extends Controller
         $criteria->order = 'id DESC';
 
         $data = json_decode(@file_get_contents('php://input'), true);
-
-
-        if(isset($data['search']))
+        if($guid)
         {
-            $criteria->compare('name', $data['search'], true, 'OR');
-            //$criteria->compare('id', $data['search'], false, 'OR');
+            $criteria->condition .= 'guid = '.$guid;
+            if(isset($data['search']))
+                $criteria->condition .= " AND name LIKE '%".$data['search']."%'";
         }
 
-        if($guid === null)
-            $claims = Claim::model()->findAll($criteria);
-        else
-        {
-            //$criteria->addCondition('guid = '.$guid, 'AND');
-            $claims = Claim::model()->findAll($criteria);
-        }
+        $claims = Claim::model()->findAll($criteria);
 
         foreach($claims as $claim)
             $response[] = array('id' => $claim->id, 'name' => $claim->name, 'error' => $claim->error, 'guid' => $claim->guid, 'status' => $claim->status, 'created' => $claim->created, 'closed' => $claim->closed, 'comment' => $claim->comment);
