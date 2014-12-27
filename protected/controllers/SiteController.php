@@ -98,7 +98,7 @@ class SiteController extends Controller
             $criteria->condition .= 'guid = '.$guid;
             if(isset($data['search']))
                 $criteria->condition .= " AND name LIKE '%".$data['search']."%'";
-            else
+
                 echo $data['search'];
         }
 
