@@ -93,6 +93,7 @@ class SiteController extends Controller
         $criteria->order = 'id DESC';
 
         $data = json_decode(@file_get_contents('php://input'), true);
+        array_walk_recursive($data, 'Core::utfDe');
         if($guid)
         {
             $criteria->condition .= 'guid = '.$guid;
