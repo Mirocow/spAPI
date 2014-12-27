@@ -90,6 +90,7 @@ class SiteController extends Controller
         header("Access-Control-Allow-Origin: *");
         $response = array();
         $criteria = new CDbCriteria();
+        $criteria->order = 'id DESC';
 
         $data = json_decode(@file_get_contents('php://input'), true);
 
@@ -97,8 +98,7 @@ class SiteController extends Controller
         if(isset($data['search']))
         {
             $criteria->compare('name', $data['search'], true, 'OR');
-            $criteria->compare('id', $data['search'], false, 'OR');
-            $criteria->order = 'id DESC';
+            //$criteria->compare('id', $data['search'], false, 'OR');
         }
 
         if($guid === null)
