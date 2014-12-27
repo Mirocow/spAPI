@@ -28,7 +28,7 @@ class SiteController extends Controller
 	public function actionIndex($guid = null)
 	{
         $response = array(
-            'claims' => $this->actionClaims($guid, null, false),
+            'claims' => $this->actionClaims($guid, false),
             'hardware' => $this->actionHardware($guid, false),
             'photos' => $this->actionPhotos($guid, false),
         );
@@ -85,15 +85,19 @@ class SiteController extends Controller
         else
             return $response;
     }
-    public function actionClaims($guid = null, $search = null, $render = true)
+    public function actionClaims($guid = null, $render = true)
     {
         header("Access-Control-Allow-Origin: *");
         $response = array();
         $criteria = new CDbCriteria();
-        if($search)
+
+        $data = json_decode(@file_get_contents('php://input'), true);
+
+
+        if(isset($data['search']))
         {
-            $criteria->compare('name', $search, true, 'OR');
-            $criteria->compare('id', $search, false, 'OR');
+            $criteria->compare('name', $data['search'], true, 'OR');
+            $criteria->compare('id', $data['search'], false, 'OR');
             $criteria->order = 'id DESC';
         }
 
