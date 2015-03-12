@@ -124,4 +124,9 @@ class Claim extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function beforeSave() {
+        if(!parent::beforeSave()) return false;
+        //if($this->status == )
+    }
 }

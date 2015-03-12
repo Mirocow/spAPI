@@ -112,7 +112,7 @@ class SiteController extends Controller
         array_walk_recursive($response, 'Core::utfEn');
 
         if($render)
-            echo json_encode($response);
+            echo json_encode(['claims' => $response]);
         else
             return $response;
     }
