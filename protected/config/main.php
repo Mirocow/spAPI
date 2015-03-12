@@ -64,7 +64,7 @@ return array(
 			'connectionString' => 'dblib:host=91.203.194.185;dbname=monitoring',
 			//'emulatePrepare' => true,
 			'username' => 'sa',
-			'password' => 'JokE5001031',
+			'password' => 'JokE5001032',
 			//'charset' => 'utf8',
 		),
 
