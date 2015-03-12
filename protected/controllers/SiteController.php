@@ -92,6 +92,7 @@ class SiteController extends Controller
         $criteria = new CDbCriteria();
         $criteria->order = 'id DESC';
 
+
         $data = json_decode(@file_get_contents('php://input'), true);
         if(is_array($data))
             array_walk_recursive($data, 'Core::utfDe');
@@ -100,7 +101,7 @@ class SiteController extends Controller
         {
             $criteria->condition .= 'guid = '.$guid;
             if(isset($data['search']))
-                $criteria->condition .= " AND name LIKE '%".$data['search']."%'";
+                $criteria->condition .= " AND name LIKE '%".$data['search']."%' ";
         }
 
         $claims = Claim::model()->findAll($criteria);
