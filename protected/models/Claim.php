@@ -12,6 +12,12 @@
  * @property string $created
  * @property string $closed
  * @property string $comment
+ * @property integer $type
+ * @property integer $ride
+ * @property integer $verified
+ *
+ * The followings are the available model relations:
+ * @property Entity $gu
  */
 class Claim extends CActiveRecord
 {
@@ -32,11 +38,12 @@ class Claim extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, error, guid, status, created', 'required'),
-			array('guid, status', 'numerical', 'integerOnly'=>true),
+			array('guid, status, type, ride, verified', 'numerical', 'integerOnly'=>true),
 			array('name, error, comment', 'length', 'max'=>255),
+			array('closed', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, error, guid, status, created, closed, comment', 'safe', 'on'=>'search'),
+			array('id, name, error, guid, status, created, closed, comment, type, ride, verified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,6 +55,7 @@ class Claim extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'gu' => array(self::BELONGS_TO, 'Entity', 'guid'),
 		);
 	}
 
@@ -65,6 +73,9 @@ class Claim extends CActiveRecord
 			'created' => 'Created',
 			'closed' => 'Closed',
 			'comment' => 'Comment',
+			'type' => 'Type',
+			'ride' => 'Ride',
+			'verified' => 'Verified',
 		);
 	}
 
@@ -94,6 +105,9 @@ class Claim extends CActiveRecord
 		$criteria->compare('created',$this->created,true);
 		$criteria->compare('closed',$this->closed,true);
 		$criteria->compare('comment',$this->comment,true);
+		$criteria->compare('type',$this->type);
+		$criteria->compare('ride',$this->ride);
+		$criteria->compare('verified',$this->verified);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
