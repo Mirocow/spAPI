@@ -29,6 +29,7 @@ class SiteController extends Controller
 	{
         $entity = Entity::model()->findByPk($guid);
         $response = array(
+            'guid' => $entity->guid,
             'comment' => $entity->comment,
             'claims' => $this->actionClaims($guid, false),
             'hardware' => $this->actionHardware($guid, false),
