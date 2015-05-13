@@ -34,9 +34,30 @@ class SiteController extends Controller
             'claims' => $this->actionClaims($guid, false),
             'hardware' => $this->actionHardware($guid, false),
             'photos' => $this->actionPhotos($guid, false),
+            'documents' => $this->actionDocuments($guid, false),
         );
         print json_encode($response);
 	}
+    public function actionDocuments($guid = null, $render = true)
+    {
+        header("Access-Control-Allow-Origin: *");
+        $response = array();
+
+        if($guid === null)
+            $documents = Document::model()->findAll();
+        else
+            $documents = Document::model()->findAllByAttributes(array('entity_id' => $guid));
+
+        foreach($documents as $document)
+            $response[] = array('id' => $document->id, 'name' => $document->name, 'file' => $document->file, 'entity_id' => $document->guid);
+
+        array_walk_recursive($response, 'Core::utfEn');
+
+        if($render)
+            echo json_encode($response);
+        else
+            return $response;
+    }
     public function actionEntities()
     {
         header("Access-Control-Allow-Origin: *");
