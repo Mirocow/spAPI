@@ -31,7 +31,7 @@ class DocumentController extends Controller
                 $document->name = $filename;
                 $document->guid = $guid; //@todo Проверка на гуид
                 $document->save();
-                var_dump($photo->getErrors());
+                var_dump($document->getErrors());
             }
         }
     }
