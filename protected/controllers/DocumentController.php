@@ -35,4 +35,8 @@ class DocumentController extends Controller
             }
         }
     }
+    public function actionDelete($id)
+    {
+        Document::model()->deleteByPk($id);
+    }
 }
