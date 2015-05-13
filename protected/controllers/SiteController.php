@@ -187,7 +187,7 @@ class SiteController extends Controller
 
         file_put_contents($dir.$filename, '');
 
-        $this->base64_to_jpeg($data['Photo']['content'], $dir.$filename);
+        $this->base64_to_file($data['Photo']['content'], $dir.$filename);
 
         if($guid)
         {
@@ -274,19 +274,6 @@ class SiteController extends Controller
 		}
 		$this->render('contact',array('model'=>$model));
 	}
-
-
-    public function base64_to_jpeg($base64_string, $output_file)
-    {
-        $ifp = fopen($output_file, "wb");
-
-        $data = explode(',', $base64_string);
-
-        fwrite($ifp, base64_decode($data[1]));
-        fclose($ifp);
-
-        return $output_file;
-    }
 	/**
 	 * Displays the login page
 	 */

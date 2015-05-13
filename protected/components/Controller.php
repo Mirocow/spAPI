@@ -20,4 +20,19 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+
+
+
+
+    public function base64_to_file($base64_string, $output_file)
+    {
+        $ifp = fopen($output_file, "wb");
+
+        $data = explode(',', $base64_string);
+
+        fwrite($ifp, base64_decode($data[1]));
+        fclose($ifp);
+
+        return $output_file;
+    }
 }
