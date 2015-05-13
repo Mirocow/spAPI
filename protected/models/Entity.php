@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'entity':
  * @property integer $guid
  * @property string $name
+ * @property string $comment
  */
 class Entity extends CActiveRecord
 {
@@ -30,7 +31,7 @@ class Entity extends CActiveRecord
 			array('name', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('guid, name', 'safe', 'on'=>'search'),
+			array('guid, name, comment', 'safe'),
 		);
 	}
 

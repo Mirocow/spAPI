@@ -27,7 +27,9 @@ class SiteController extends Controller
 	 */
 	public function actionIndex($guid = null)
 	{
+        $entity = Entity::model()->findByPk($guid);
         $response = array(
+            'comment' => $entity->comment,
             'claims' => $this->actionClaims($guid, false),
             'hardware' => $this->actionHardware($guid, false),
             'photos' => $this->actionPhotos($guid, false),
