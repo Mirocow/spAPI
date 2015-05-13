@@ -49,7 +49,7 @@ class SiteController extends Controller
             $documents = Document::model()->findAllByAttributes(array('entity_id' => $guid));
 
         foreach($documents as $document)
-            $response[] = array('id' => $document->id, 'name' => $document->name, 'file' => $document->file, 'entity_id' => $document->guid);
+            $response[] = array('id' => $document->id, 'name' => $document->name, 'file' => $document->file);
 
         array_walk_recursive($response, 'Core::utfEn');
 
