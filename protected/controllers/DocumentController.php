@@ -29,7 +29,7 @@ class DocumentController extends Controller
                 $document = new Document();
                 $document->file = $filename;
                 $document->name = $filename;
-                $document->guid = $guid; //@todo Проверка на гуид
+                $document->entity_id = $guid; //@todo Проверка на гуид
                 $document->save();
                 var_dump($document->getErrors());
             }
