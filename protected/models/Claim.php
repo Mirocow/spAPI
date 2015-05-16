@@ -135,11 +135,11 @@ class Claim extends CActiveRecord
     {
         switch (intval($this->status))
         {
-            case 1: return "РћС‚РєСЂС‹С‚Р°";
-            case 2: return "Р’ РїСЂРѕС†РµСЃСЃРµ";
-            case 3: return "РќР° РєРѕРЅС‚СЂРѕР»Рµ";
-            case 4: return "Р—Р°РєСЂС‹С‚Р°";
-            default: return "РќРµРёР·РІРµСЃС‚РЅРѕ";
+            case 1: return "Открыта";
+            case 2: return "В процессе";
+            case 3: return "На контроле";
+            case 4: return "Закрыта";
+            default: return "Неизвестно";
         }
     }
     public function getClass()
