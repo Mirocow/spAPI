@@ -130,4 +130,27 @@ class Claim extends CActiveRecord
         //if($this->status == )
         return true;
     }
+
+    public function getStatusText()
+    {
+        switch (intval($this->status))
+        {
+            case 1: return "Открыта";
+            case 2: return "В процессе";
+            case 3: return "На контроле";
+            case 4: return "Закрыта";
+            default: return "Неизвестно";
+        }
+    }
+    public function getClass()
+    {
+        switch (intval($this->status))
+        {
+            case 1: return "danger";
+            case 2: return "warning";
+            case 3: return "info";
+            case 4: return "success";
+            default: return "";
+        }
+    }
 }
