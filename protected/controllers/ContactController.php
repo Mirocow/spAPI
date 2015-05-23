@@ -38,7 +38,7 @@ class ContactController extends Controller {
             if($data !== array())
             {
                 array_walk_recursive($data, 'Core::utfDe');
-                $contact->attributes = $data['Claim'];
+                $contact->attributes = $data['Contact'];
                 $contact->save();
             }
         }
