@@ -172,4 +172,9 @@ class Claim extends CActiveRecord
             default: return "";
         }
     }
+
+    public function getEntityName()
+    {
+        return $this->gu->name;
+    }
 }
