@@ -19,6 +19,6 @@ class ClaimController extends Controller
     }
     public function actionDelete($id)
     {
-        $claim = Claim::model()->deleteByPk($id);
+        Claim::model()->deleteByPk($id);
     }
 }
