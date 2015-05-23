@@ -152,7 +152,7 @@ class SiteController extends Controller
         $claims = Claim::model()->findAll($criteria);
 
         foreach($claims as $claim)
-            $response[] = array('id' => $claim->id, 'name' => $claim->name, 'error' => $claim->error, 'guid' => $claim->guid, 'status' => $claim->status, 'class' => $claim->getClass(), 'statusText' => $claim->getStatusText(), 'created' => $claim->created, 'closed' => $claim->closed, 'comment' => $claim->comment);
+            $response[] = array('id' => $claim->id, 'name' => $claim->name, 'error' => $claim->error, 'guid' => $claim->guid, 'status' => $claim->status, 'class' => $claim->getClass(), 'statusText' => $claim->getStatusText(), 'created' => date('H:i d.m.Y', strtotime($claim->created)), 'closed' => date('H:i d.m.Y', strtotime($claim->closed)), 'comment' => $claim->comment);
 
         array_walk_recursive($response, 'Core::utfEn');
 
