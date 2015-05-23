@@ -134,7 +134,7 @@ class Claim extends CActiveRecord
         if(!parent::beforeSave()) return false;
         $oldClaim = Claim::model()->findByPk($this->id);
 
-        if($oldClaim->status !== self::STATUS_CLOSED && $this->status == self::STATUS_CLOSED)
+        if($oldClaim->status != self::STATUS_CLOSED && $this->status == self::STATUS_CLOSED)
             $this->closed = new CDbExpression('GetDate()');
 
         return true;
