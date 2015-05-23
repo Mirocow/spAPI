@@ -7,6 +7,7 @@
  * @property integer $id
  * @property integer $guid
  * @property string $name
+ * @property string $serial
  */
 class Hardware extends CActiveRecord
 {
@@ -28,10 +29,9 @@ class Hardware extends CActiveRecord
 		return array(
 			array('guid, name', 'required'),
 			array('guid', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, guid, name', 'safe', 'on'=>'search'),
+			array('id, guid, name, serial', 'safe'),
 		);
 	}
 
@@ -55,6 +55,7 @@ class Hardware extends CActiveRecord
 			'id' => 'ID',
 			'guid' => 'Guid',
 			'name' => 'Name',
+			'serial' => 'Name',
 		);
 	}
 
@@ -79,6 +80,7 @@ class Hardware extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('guid',$this->guid);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('serial',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
