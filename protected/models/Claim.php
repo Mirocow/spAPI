@@ -151,6 +151,16 @@ class Claim extends CActiveRecord
             default: return "Неизвестно";
         }
     }
+    public function getErrorText()
+    {
+        switch (intval($this->error))
+        {
+            case 1: return "Отключен сервер";
+            case 2: return "Не работает почтовый клиент";
+            case 3: return "Отключено питание в серверной";
+            default: return "-";
+        }
+    }
     public function getClass()
     {
         switch (intval($this->status))
