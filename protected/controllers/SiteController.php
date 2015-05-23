@@ -36,7 +36,7 @@ class SiteController extends Controller
             'contacts' => $this->actionContacts($guid, false),
             'photos' => $this->actionPhotos($guid, false),
             'documents' => $this->actionDocuments($guid, false),
-            'allClaims' => $this->actionClaims(null, false),
+            'allClaims' => ['claims' => $this->actionClaims(null, false)],
         );
         print json_encode($response);
 	}
