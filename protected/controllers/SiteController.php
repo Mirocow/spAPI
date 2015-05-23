@@ -176,8 +176,8 @@ class SiteController extends Controller
                 $claim->created = new CDbExpression('GETDATE()');
                 $claim->guid = $guid; //@todo Проверка на гуид
                 $claim->status = Claim::STATUS_OPEN;
-                $claim->save();
-                CVarDumper::dump($claim,100,false);
+                //$claim->save();
+               //CVarDumper::dump($claim,100,false);
             }
         }
     }
