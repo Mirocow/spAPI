@@ -81,7 +81,7 @@ class SiteController extends Controller
             $hardwares = Hardware::model()->findAllByAttributes(array('guid' => $guid));
 
         foreach($hardwares as $hardware)
-            $response[] = array('id' => $hardware->id, 'name' => $hardware->name, 'guid' => $hardware->guid);
+            $response[] = array('id' => $hardware->id, 'name' => $hardware->name, 'serial' => $hardware->serial, 'guid' => $hardware->guid);
 
         array_walk_recursive($response, 'Core::utfEn');
 
