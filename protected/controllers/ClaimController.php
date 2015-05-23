@@ -10,6 +10,11 @@ class ClaimController extends Controller
 {
     public function actionUpdateStatus($id, $status)
     {
-        Claim::model()->updateAll(['status' => $status], 'id = :id', [':id' => $id]);
+        $claim = Claim::model()->findByPk($id);
+        if($claim)
+        {
+            $claim->status = $status;
+            $claim->save();
+        }
     }
 }
