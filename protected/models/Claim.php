@@ -21,6 +21,11 @@
  */
 class Claim extends CActiveRecord
 {
+    const  STATUS_OPEN = 1;
+    const  STATUS_IN_PROCESS = 2;
+    const  STATUS_ON_CONTROL = 3;
+    const  STATUS_CLOSED = 4;
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -127,7 +132,11 @@ class Claim extends CActiveRecord
 
     public function beforeSave() {
         if(!parent::beforeSave()) return false;
-        //if($this->status == )
+        $oldClaim = Claim::model()->findByPk($this->id);
+
+        if($oldClaim->status !== self::STATUS_CLOSED && $this->status == self::STATUS_CLOSED)
+            $this->closed = new CDbExpression('GetDate()');
+
         return true;
     }
 
