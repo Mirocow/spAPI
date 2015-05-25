@@ -44,7 +44,7 @@ class Claim extends CActiveRecord
 		return array(
 			array('name, error, guid, status, created', 'required'),
 			array('guid, status, type, ride, verified', 'numerical', 'integerOnly'=>true),
-			array('name, error, comment', 'length', 'max'=>255),
+			array('error', 'length', 'max'=>255),
 			array('closed', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
