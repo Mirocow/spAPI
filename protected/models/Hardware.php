@@ -8,6 +8,7 @@
  * @property integer $guid
  * @property string $name
  * @property string $serial
+ * @property string $comment
  */
 class Hardware extends CActiveRecord
 {
@@ -31,7 +32,7 @@ class Hardware extends CActiveRecord
 			array('guid', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, guid, name, serial', 'safe'),
+			array('id, guid, name, serial, comment', 'safe'),
 		);
 	}
 

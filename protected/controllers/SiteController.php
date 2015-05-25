@@ -82,7 +82,7 @@ class SiteController extends Controller
             $hardwares = Hardware::model()->findAllByAttributes(array('guid' => $guid));
 
         foreach($hardwares as $hardware)
-            $response[] = array('id' => $hardware->id, 'name' => $hardware->name, 'serial' => $hardware->serial, 'guid' => $hardware->guid);
+            $response[] = array('id' => $hardware->id, 'name' => $hardware->name, 'serial' => $hardware->serial, 'comment' => $hardware->comment, 'guid' => $hardware->guid);
 
         array_walk_recursive($response, 'Core::utfEn');
 
@@ -148,6 +148,10 @@ class SiteController extends Controller
             $criteria->condition .= 'guid = '.$guid;
             if(isset($data['search']))
                 $criteria->condition .= " AND name LIKE '%".$data['search']."%' ";
+        }
+        else {
+            if(isset($data['search']))
+                $criteria->condition = "name LIKE '%".$data['search']."%' ";
         }
 
         $claims = Claim::model()->findAll($criteria);
