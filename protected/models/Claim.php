@@ -23,7 +23,12 @@
  */
 class Claim extends CActiveRecord
 {
-	/**
+    const  STATUS_OPEN = 1;
+    const  STATUS_IN_PROCESS = 2;
+    const  STATUS_ON_CONTROL = 3;
+    const  STATUS_CLOSED = 4;
+
+    /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -130,4 +135,52 @@ class Claim extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function beforeSave() {
+        if(!parent::beforeSave()) return false;
+        $oldClaim = Claim::model()->findByPk($this->id);
+
+        if($oldClaim->status != self::STATUS_CLOSED && $this->status == self::STATUS_CLOSED)
+            $this->closed = new CDbExpression('GetDate()');
+
+        return true;
+    }
+
+    public function getStatusText()
+    {
+        switch (intval($this->status))
+        {
+            case 1: return "Открыта";
+            case 2: return "В процессе";
+            case 3: return "На контроле";
+            case 4: return "Закрыта";
+            default: return "Неизвестно";
+        }
+    }
+    public function getErrorText()
+    {
+        switch (intval($this->error))
+        {
+            case 1: return "Отключен сервер";
+            case 2: return "Не работает почтовый клиент";
+            case 3: return "Отключено питание в серверной";
+            default: return "-";
+        }
+    }
+    public function getClass()
+    {
+        switch (intval($this->status))
+        {
+            case 1: return "danger";
+            case 2: return "warning";
+            case 3: return "info";
+            case 4: return "success";
+            default: return "";
+        }
+    }
+
+    public function getEntityName()
+    {
+        return $this->gu->name;
+    }
 }
