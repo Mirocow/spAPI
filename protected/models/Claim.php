@@ -12,20 +12,17 @@
  * @property string $created
  * @property string $closed
  * @property string $comment
- * @property integer $type
- * @property integer $ride
- * @property integer $verified
+ * @property string $ride
+ * @property string $ride_info
+ * @property string $decision
+ * @property string $create_type
+ * @property string $important
  *
  * The followings are the available model relations:
  * @property Entity $gu
  */
 class Claim extends CActiveRecord
 {
-    const  STATUS_OPEN = 1;
-    const  STATUS_IN_PROCESS = 2;
-    const  STATUS_ON_CONTROL = 3;
-    const  STATUS_CLOSED = 4;
-
 	/**
 	 * @return string the associated database table name
 	 */
@@ -42,13 +39,13 @@ class Claim extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, error, guid, status, created', 'required'),
-			array('guid, status, type, ride, verified', 'numerical', 'integerOnly'=>true),
+			array('error, guid, status, created', 'required'),
+			array('guid, status', 'numerical', 'integerOnly'=>true),
 			array('error', 'length', 'max'=>255),
-			array('closed', 'safe'),
+			array('name, closed, comment, ride, ride_info, decision, create_type, important', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, error, guid, status, created, closed, comment, type, ride, verified', 'safe', 'on'=>'search'),
+			array('id, name, error, guid, status, created, closed, comment, ride, ride_info, decision, create_type, important', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,9 +75,11 @@ class Claim extends CActiveRecord
 			'created' => 'Created',
 			'closed' => 'Closed',
 			'comment' => 'Comment',
-			'type' => 'Type',
 			'ride' => 'Ride',
-			'verified' => 'Verified',
+			'ride_info' => 'Ride Info',
+			'decision' => 'Decision',
+			'create_type' => 'Create Type',
+			'important' => 'Important',
 		);
 	}
 
@@ -110,9 +109,11 @@ class Claim extends CActiveRecord
 		$criteria->compare('created',$this->created,true);
 		$criteria->compare('closed',$this->closed,true);
 		$criteria->compare('comment',$this->comment,true);
-		$criteria->compare('type',$this->type);
-		$criteria->compare('ride',$this->ride);
-		$criteria->compare('verified',$this->verified);
+		$criteria->compare('ride',$this->ride,true);
+		$criteria->compare('ride_info',$this->ride_info,true);
+		$criteria->compare('decision',$this->decision,true);
+		$criteria->compare('create_type',$this->create_type,true);
+		$criteria->compare('important',$this->important,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -129,52 +130,4 @@ class Claim extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-
-    public function beforeSave() {
-        if(!parent::beforeSave()) return false;
-        $oldClaim = Claim::model()->findByPk($this->id);
-
-        if($oldClaim->status != self::STATUS_CLOSED && $this->status == self::STATUS_CLOSED)
-            $this->closed = new CDbExpression('GetDate()');
-
-        return true;
-    }
-
-    public function getStatusText()
-    {
-        switch (intval($this->status))
-        {
-            case 1: return "Открыта";
-            case 2: return "В процессе";
-            case 3: return "На контроле";
-            case 4: return "Закрыта";
-            default: return "Неизвестно";
-        }
-    }
-    public function getErrorText()
-    {
-        switch (intval($this->error))
-        {
-            case 1: return "Отключен сервер";
-            case 2: return "Не работает почтовый клиент";
-            case 3: return "Отключено питание в серверной";
-            default: return "-";
-        }
-    }
-    public function getClass()
-    {
-        switch (intval($this->status))
-        {
-            case 1: return "danger";
-            case 2: return "warning";
-            case 3: return "info";
-            case 4: return "success";
-            default: return "";
-        }
-    }
-
-    public function getEntityName()
-    {
-        return $this->gu->name;
-    }
 }
