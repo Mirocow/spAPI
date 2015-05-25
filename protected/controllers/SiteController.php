@@ -156,9 +156,27 @@ class SiteController extends Controller
 
         $claims = Claim::model()->findAll($criteria);
 
-        foreach($claims as $claim)
-            $response[] = array('id' => $claim->id, 'name' => $claim->name, 'entityName' => $claim->getEntityName(), 'error' => $claim->error, 'guid' => $claim->guid, 'status' => $claim->status, 'class' => $claim->getClass(), 'statusText' => $claim->getStatusText(), 'errorText' => $claim->getErrorText(), 'created' => date('H:i d.m.Y', strtotime($claim->created)), 'closed' => date('H:i d.m.Y', strtotime($claim->closed)), 'comment' => $claim->comment);
-
+        foreach($claims as $claim) {
+            $response[] = array(
+                'id' => $claim->id,
+                'name' => $claim->name,
+                'entityName' => $claim->getEntityName(),
+                'priority' => $claim->priority,
+                'ride' => $claim->ride,
+                'rideInfo' => $claim->ride_info,
+                'decision' => $claim->decision,
+                'createType' => $claim->create_type,
+                'error' => $claim->error,
+                'guid' => $claim->guid,
+                'status' => $claim->status,
+                'class' => $claim->getClass(),
+                'statusText' => $claim->getStatusText(),
+                'errorText' => $claim->getErrorText(),
+                'created' => date('H:i d.m.Y', strtotime($claim->created)),
+                'closed' => date('H:i d.m.Y', strtotime($claim->closed)),
+                'comment' => $claim->comment
+            );
+        }
         array_walk_recursive($response, 'Core::utfEn');
 
         if($render)
