@@ -16,7 +16,7 @@
  * @property string $ride_info
  * @property string $decision
  * @property string $create_type
- * @property string $important
+ * @property string $priority
  *
  * The followings are the available model relations:
  * @property Entity $gu
@@ -47,10 +47,10 @@ class Claim extends CActiveRecord
 			array('error, guid, status, created', 'required'),
 			array('guid, status', 'numerical', 'integerOnly'=>true),
 			array('error', 'length', 'max'=>255),
-			array('name, closed, comment, ride, ride_info, decision, create_type, important', 'safe'),
+			array('name, closed, comment, ride, ride_info, decision, create_type, priority', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, error, guid, status, created, closed, comment, ride, ride_info, decision, create_type, important', 'safe', 'on'=>'search'),
+			array('id, name, error, guid, status, created, closed, comment, ride, ride_info, decision, create_type, priority', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -84,7 +84,7 @@ class Claim extends CActiveRecord
 			'ride_info' => 'Ride Info',
 			'decision' => 'Decision',
 			'create_type' => 'Create Type',
-			'important' => 'Important',
+			'priority' => 'priority',
 		);
 	}
 
@@ -118,7 +118,7 @@ class Claim extends CActiveRecord
 		$criteria->compare('ride_info',$this->ride_info,true);
 		$criteria->compare('decision',$this->decision,true);
 		$criteria->compare('create_type',$this->create_type,true);
-		$criteria->compare('important',$this->important,true);
+		$criteria->compare('priority',$this->priority,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
