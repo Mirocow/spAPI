@@ -173,7 +173,7 @@ class SiteController extends Controller
                 'statusText' => $claim->getStatusText(),
                 'errorText' => $claim->getErrorText(),
                 'created' => date('H:i d.m.Y', strtotime($claim->created)),
-                'closed' => date('H:i d.m.Y', strtotime($claim->closed)),
+                'closed' => $claim->closed ? date('H:i d.m.Y', strtotime($claim->closed)) : '',
                 'comment' => $claim->comment
             );
         }
