@@ -147,11 +147,11 @@ class SiteController extends Controller
         {
             $criteria->condition .= 'guid = '.$guid;
             if(isset($data['search']))
-                $criteria->condition .= " AND name LIKE '%".$data['search']."%' ";
+                $criteria->condition .= " AND (name LIKE '%".$data['search']."%' OR comment LIKE '%".$data['search']."%')";
         }
         else {
             if(isset($data['search']))
-                $criteria->condition = "name LIKE '%".$data['search']."%' ";
+                $criteria->condition = "name LIKE '%".$data['search']."%'  OR comment LIKE '%".$data['search']."%'";
         }
 
         $claims = Claim::model()->findAll($criteria);
