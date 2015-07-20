@@ -200,6 +200,7 @@ class SiteController extends Controller
                 $claim->guid = $guid; //@todo Проверка на гуид
                 $claim->status = Claim::STATUS_OPEN;
                 @$claim->save();
+                echo json_encode($claim->attributes);
             }
         }
     }
