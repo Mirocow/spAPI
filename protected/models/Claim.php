@@ -148,6 +148,7 @@ class Claim extends CActiveRecord
 
     public function getStatusText()
     {
+        return 'lol'; //@todo
         switch (intval($this->status))
         {
             case 1: return "Открыта";
