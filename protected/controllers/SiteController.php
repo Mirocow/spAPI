@@ -195,11 +195,11 @@ class SiteController extends Controller
             {
                 //array_walk_recursive($data, 'Core::utfDe');
                 $claim = new Claim();
-                die();
                 $claim->attributes = $data['Claim'];
                 $claim->created = new CDbExpression('NOW()');//new CDbExpression('GETDATE()');
                 $claim->guid = $guid; //@todo Проверка на гуид
                 $claim->status = Claim::STATUS_OPEN;
+                die(11212121);
                 @$claim->save();
             }
         }
