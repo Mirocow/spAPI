@@ -180,7 +180,7 @@ class SiteController extends Controller
                 $claim->attributes = $data['Claim'];
                 $claim->created = new CDbExpression('NOW()');//new CDbExpression('GETDATE()');
                 $claim->guid = $guid; //@todo Проверка на гуид
-                $claim->status = Claim::STATUS_OPEN;
+                $claim->status = intval($claim->status);//Claim::STATUS_OPEN;
                 @$claim->save();
 
                 $claim = Claim::model()->findByPk($claim->getPrimaryKey());
