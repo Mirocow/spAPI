@@ -244,7 +244,7 @@ class SiteController extends Controller
                 array_walk_recursive($data, 'Core::utfDe');
                 $claim->attributes = $data['Claim'];
                 $claim->save();
-                ;
+
                 echo json_encode($claim->getInfo());
             }
         }
