@@ -60,13 +60,20 @@ return array(
         ),*/
 		// uncomment the following to use a MySQL database
 
-		'db'=>array(
+        'db'=>array(
+            'connectionString' => 'mysql:host=localhost;dbname=monitoring',
+            'emulatePrepare' => true,
+            'username' => 'root',
+            'password' => '884088',
+            'charset' => 'utf8',
+        ),
+	/*	'db'=>array(
 			'connectionString' => 'dblib:host=91.203.194.185;dbname=monitoring',
 			//'emulatePrepare' => true,
 			'username' => 'sa',
 			'password' => 'JokE5001031',
 			//'charset' => 'utf8',
-		),
+		),*/
 
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors

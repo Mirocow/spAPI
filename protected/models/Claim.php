@@ -161,9 +161,26 @@ class Claim extends CActiveRecord
     {
         switch (intval($this->error))
         {
-            case 1: return "Отключен сервер";
-            case 2: return "Не работает почтовый клиент";
-            case 3: return "Отключено питание в серверной";
+
+            case 1: return 'Отключен сервер';
+            case 2: return 'Не работает почтовый клиент';
+            case 3: return 'Отключено питание в серверной';
+            case 4: return 'АПКШ';
+            case 5: return 'Канал связи';
+            case 6: return 'Консультация';
+            case 7: return 'Недоступен ШЛЮЗ';
+            case 8: return 'Неисправен сервер';
+            case 9: return 'Ошибка монопак';
+            case 10: return 'Ошибка службы мониторинга';
+            case 11: return 'Ошибки ini';
+            case 12: return 'ПАК';
+            case 13: return 'Перезапуск сервера';
+            case 14: return 'Плановые работы';
+            case 15: return 'Поиск писем';
+            case 16: return 'СКПС';
+            case 17: return 'Смена сертификатов';
+            case 18: return 'СЭД Ведомства';
+            case 19: return 'Другое';
             default: return "-";
         }
     }
