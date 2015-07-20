@@ -279,4 +279,10 @@ class SiteController extends Controller
             }
         }
     }
+
+    public function actionError()
+    {
+        if($error=Yii::app()->errorHandler->error)
+            CVarDumper::dump($error,100,false);
+    }
 }
