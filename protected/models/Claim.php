@@ -201,4 +201,27 @@ class Claim extends CActiveRecord
     {
         return $this->gu->name;
     }
+
+    public function getInfo()
+    {
+        return array(
+            'id' => $this->id,
+            'name' => $this->name,
+            'entityName' => $this->getEntityName(),
+            'priority' => $this->priority,
+            'ride' => $this->ride,
+            'rideInfo' => $this->ride_info,
+            'decision' => $this->decision,
+            'createType' => $this->create_type,
+            'error' => $this->error,
+            'guid' => $this->guid,
+            'status' => $this->status,
+            'class' => $this->getClass(),
+            'statusText' => $this->getStatusText(),
+            'errorText' => $this->getErrorText(),
+            'created' => date('H:i d.m.Y', strtotime($this->created)),
+            'closed' => $this->closed ? date('H:i d.m.Y', strtotime($this->closed)) : '',
+            'comment' => $this->comment
+        );
+    }
 }
